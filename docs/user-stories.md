@@ -3,10 +3,10 @@
 |                        |               |
 | ---------------------- | ------------- |
 | **Author**       | Dylan Ramdath |
-| **Last updated** | 2026-10-27    |
-| **Version**      | 0.1           |
+| **Last updated** | 2026-11-02    |
+| **Version**      | 0.2           |
 
-Related: [Product Brief](product-brief.md)
+Related: [Product Brief](product-brief.md) · [Threat Model](threat-model.md)
 
 ---
 
@@ -428,3 +428,31 @@ Epics are listed in build order.
 **Expected defense:** Banning ends all of the user's sessions on the server, banned accounts cannot log in, and the same RIT email cannot be used to create a new account.
 
 **Related stories:** US-22
+
+### AC-11: Hide or deny an admin action
+**As a** rogue admin, **I want to** remove a fair review or ban a student and then edit or delete the admin log entry **so that** I can deny I did it.
+
+**Expected defense:** Every admin action is written to the admin log with the admin, time, action, and reason. The application's database user can only insert and read admin log entries, never update or delete them.
+
+**Related stories:** US-20, US-21, US-22 · **Threat model:** T-16, T-23
+
+### AC-12: Forge a request from another website (CSRF)
+**As an** attacker, **I want to** get a logged-in student to visit my website, which secretly submits a review, report, or account deletion to Brick Reviews **so that** the action happens under their account without them knowing.
+
+**Expected defense:** Spring Security CSRF protection rejects any state-changing request without a valid CSRF token (403), and the session cookie is SameSite=Lax so browsers don't send it on cross-site form posts.
+
+**Related stories:** US-14, US-15, US-16, US-18, US-23 · **Threat model:** T-14
+
+### AC-13: Hijack a session
+**As an** attacker, **I want to** steal a student's session cookie or plant a known session ID before they log in **so that** I can act as them without their password.
+
+**Expected defense:** The session cookie is HttpOnly, Secure, and SameSite; the session ID is regenerated on login; sessions expire after inactivity and are invalidated on logout and on ban.
+
+**Related stories:** US-03, US-04, US-22 · **Threat model:** T-15, T-26
+
+### AC-14: Reuse or guess a verification link
+**As an** attacker, **I want to** guess a verification token, reuse an old link, or use a link after it expires **so that** I can verify an account for an email I don't control.
+
+**Expected defense:** Tokens are long and random and stored only as a hash; they expire after 24 hours, work only once, and stop working when a new link is sent. Invalid, used, or expired tokens change nothing, and verification attempts are rate limited.
+
+**Related stories:** US-01, US-02 · **Threat model:** T-29
