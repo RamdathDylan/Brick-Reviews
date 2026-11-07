@@ -1,3 +1,13 @@
 .DS_Store
 notes/
 .env
+backend/target/
+backend/build/
+*.class
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+.idea/
+.vscode/
+*.iml
+.DS_Store
