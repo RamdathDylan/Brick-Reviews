@@ -1,7 +1,6 @@
-# Brick Reviews
+# Brick Reviews ![CI](https://github.com/RamdathDylan/brick-reviews/actions/workflows/ci.yml/badge.svg)
 
 A course and professor review platform for RIT students. Reviews come only from students with a verified @rit.edu email, and each student can review a course once.
-
 *Not affiliated with, endorsed by, or sponsored by RIT.*
 
 ## Features (planned)
