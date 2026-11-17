@@ -41,13 +41,34 @@ public class SmtpEmailService implements EmailService {
         verificationEmail.setSubject(subject);
         verificationEmail.setText(body);
 
-    
         mailSender.send(verificationEmail);
     }
 
     @Override
     public void sendAccountExistsEmail(String to) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        SimpleMailMessage accountExistsEmail = new SimpleMailMessage();
+        String subject = "Brick Reviews | Sign-up attempt for your account";
+        String body = """
+        Hello, 
+
+        Someone tried to create a Brick Reviews account with this email address.
+
+        If it was you, you already have an account and can log in here:
+        %s
+    
+
+        If it wasn't you, you can ignore this email; no changes were made to your account.
+
+        Thank you,
+        Brick Reviews
+        """.formatted(frontendURL+"/login");
+        
+        accountExistsEmail.setFrom(fromEmail);
+        accountExistsEmail.setTo(to);
+        accountExistsEmail.setSubject(subject);
+        accountExistsEmail.setText(body);
+
+        mailSender.send(accountExistsEmail);
     }
     
 }
