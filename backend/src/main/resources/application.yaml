@@ -21,10 +21,22 @@ spring:
   session:
     jdbc:
       initialize-schema: always   
+      
+  mail:
+    host: localhost
+    port: 1025
+
+app:
+  frontend-url: http://localhost:4200
+  mail:
+    from: no-reply@brickreviews.local
 
 management:
   endpoints:
     web:
       base-path: /api 
       exposure:
-        include: health       
+        include: health    
+  health:
+    mail:
+      enabled: false   
