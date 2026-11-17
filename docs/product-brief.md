@@ -64,7 +64,7 @@ Additionally, anyone can post on RateMyProfessors without proving they are a stu
 - **No scraping or automated access to rit.edu.** Per RIT's Terms of Use, site content may not be copied, republished, or publicly displayed.
 - **Facts only, no copied content.** Courses and professors are stored as basic facts (course code, title, department, professor name), entered manually by admins. Official course descriptions and other RIT-authored text will not be copied or displayed.
 - **No deep links to rit.edu.** RIT's Terms only permit a text link to the top-level page (www.rit.edu), so the app will not link to individual catalog or faculty pages.
-- **No access to RIT systems or data.** The app does not integrate with RIT's systems or student records. Email verification only confirms that a user controls an @rit.edu address.
+- **No access to RIT systems or data.** The app does not integrate with RIT's systems or student records. Email verification only confirms that a user controls an @g.rit.edu address.
 - **Reviews must focus on courses and teaching.** Content that is harassing, defamatory, or about a professor's personal life is prohibited and will be removed through moderation.
 - **Reviewer anonymity.** Reviews are shown publicly as from a "Verified RIT student." User identities are stored only to enforce rules (one review per course, bans) and are never exposed through the API.
 - **Minimal data collection.** Only the data needed to run the app is collected: email, password hash, and reviews. No unnecessary personal information.
@@ -74,8 +74,8 @@ Additionally, anyone can post on RateMyProfessors without proving they are a stu
 **Assumptions**
 
 - Course codes, course titles, and professor names are factual information and can be listed without copying RIT's content.
-- RIT students have access to an @rit.edu email address and can receive verification emails at it.
-- A third-party email service (e.g., SendGrid or Amazon SES) can deliver verification emails to @rit.edu addresses.
+- RIT students have access to an @g.rit.edu email address and can receive verification emails at it.
+- A third-party email service (e.g., SendGrid or Amazon SES) can deliver verification emails to @g.rit.edu addresses.
 - Initial usage will be small (dozens to low hundreds of users), so a single deployed environment is sufficient.
 - Users will report inappropriate reviews, and one admin can keep up with moderation at launch.
 - If RIT raises a concern about the app, the project will respond promptly and make changes or take it down.
@@ -83,7 +83,7 @@ Additionally, anyone can post on RateMyProfessors without proving they are a stu
 ## 8. Security & Privacy Considerations
 
 - **Passwords are never stored in plain text.** They are salted and hashed with Argon2id.
-- **Only verified students can post.** Users must confirm ownership of an @rit.edu email before writing reviews.
+- **Only verified students can post.** Users must confirm ownership of an @g.rit.edu email before writing reviews.
 - **Sessions expire.** Users are logged out automatically after a period of inactivity and immediately on logout.
 - **Users can only change their own content.** Edit and delete actions are checked against the review's owner on the server.
 - **Admin actions are restricted and logged.** Only admins can remove reviews or ban users, and every admin action is recorded.
@@ -105,7 +105,7 @@ Additionally, anyone can post on RateMyProfessors without proving they are a stu
 | Verified students review courses they never took | Medium | Cannot be verified; rely on one review per course, user reporting, and admin moderation |
 | Not enough reviews to be useful ("empty site" problem) | Medium | Seed popular SE/CS courses first; promote through clubs and student groups |
 | Moderation load exceeds one admin | Medium | Start small; add more admins or automated filters if volume grows |
-| Verification emails blocked or sent to spam by RIT's mail system | Medium | Test early with a real @rit.edu address; use a reputable email provider |
+| Verification emails blocked or sent to spam by RIT's mail system | Medium | Test early with a real @g.rit.edu address; use a reputable email provider |
 | Scope creep delays launch | Medium | Strict non-goals list; build Musts first |
 | Limited time (solo, alongside school and work) | Medium | Vertical slices so there's always a working app; small MVP |
 | Course and professor data goes out of date | Low | Admin tools to add, edit, and retire courses and professors |

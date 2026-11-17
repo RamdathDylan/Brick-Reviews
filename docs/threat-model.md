@@ -9,10 +9,9 @@
 
 Related: [Product Brief](product-brief.md) · [User Stories](user-stories.md) · [Domain Model](domain-model.drawio.svg)
 
-
 ## 1. System Overview
 
-Brick Reviews is a web app where verified RIT students review courses and the professors who taught them. Anyone can access reviews about a course or professor. Students must sign up using an @rit.edu email address and verify their email before they can contribute. Verified students can write, edit, and delete their own reviews, and can report a review on the website. Admins moderate reported reviews, deleting reviews and banning users when necessary, and manage the course and professor catalog, including approving or rejecting catalog requests.
+Brick Reviews is a web app where verified RIT students review courses and the professors who taught them. Anyone can access reviews about a course or professor. Students must sign up using an @g.rit.edu email address and verify their email before they can contribute. Verified students can write, edit, and delete their own reviews, and can report a review on the website. Admins moderate reported reviews, deleting reviews and banning users when necessary, and manage the course and professor catalog, including approving or rejecting catalog requests.
 
 The application stores a user's email address, password hash (Argon2id), reviews, reports, catalog requests, and admin action logs. The most sensitive data is the link between a review and the account that wrote it, since reviews are shown publicly as anonymous. An Angular frontend is served from the same origin as a Spring Boot REST API, which uses Spring Security with server-side sessions (HttpOnly cookies, stored via Spring Session JDBC) and stores data in PostgreSQL. A third-party email service sends verification emails.
 
@@ -69,7 +68,7 @@ The email service sits outside every trust zone because it is a third party.
 | T-01 | E-04 P2: Spring Boot API | E      | A regular student calls admin endpoints directly to retire courses or ban users                                             | AC-03                           |
 | T-02 | E-01 User                | S      | An attacker guesses or reuses a student's password to log in as them                                                        | AC-02                           |
 | T-03 | E-01 User                | S      | A banned user keeps using an old session or signs up again with the same email                                              | AC-10                           |
-| T-04 | E-01 User                | S      | Someone signs up using another student's @rit.edu address                                                                   | US-01, US-02                    |
+| T-04 | E-01 User                | S      | Someone signs up using another student's @g.rit.edu address                                                                   | US-01, US-02                    |
 | T-05 | E-01 User                | S      | A verified student reviews a course they never took                                                                         | Brief §9                       |
 | T-06 | E-01 User                | R      | A student posts a harassing review and later denies writing it                                                              | US-14, US-19                    |
 | T-07 | E-02 Email service       | S      | An attacker sends phishing emails that imitate Brick Reviews verification emails to steal passwords                         | US-02                           |
@@ -143,7 +142,7 @@ The email service sits outside every trust zone because it is a third party.
 | T-25   | Malware or malicious extensions on a user's device                     | The user's device is outside the app's control                                                             | No planned change                                             |
 | T-30   | Someone else uses a verification link from a forwarded or shared email | Inbox security is outside the app's control; single-use, short-lived links limit the damage                | If verification abuse is reported                             |
 | —     | Hosting provider or email provider is compromised                      | Third-party infrastructure is out of scope; reputable providers are used                                   | When choosing or changing providers                           |
-| —     | Verification emails are blocked or filtered by RIT's mail system       | RIT's mail servers are out of the app's control                                                            | Test with a real @rit.edu address during the walking skeleton |
+| —     | Verification emails are blocked or filtered by RIT's mail system       | RIT's mail servers are out of the app's control                                                            | Test with a real @g.rit.edu address during the walking skeleton |
 
 ---
 
